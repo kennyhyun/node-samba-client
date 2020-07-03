@@ -24,6 +24,7 @@ class SambaClient {
     // Possible values for protocol version are listed in the Samba man pages:
     // https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html#CLIENTMAXPROTOCOL
     this.maxProtocol = options.maxProtocol;
+    this.port = options.port;
   }
 
   getFile(path, destination) {
@@ -102,6 +103,11 @@ class SambaClient {
 
     if (this.maxProtocol) {
       args.push('--max-protocol', this.maxProtocol);
+    }
+
+    if (this.port) {
+      args.push('-p');
+      args.push(this.port);
     }
 
     return args;
